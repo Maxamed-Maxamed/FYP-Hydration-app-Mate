@@ -1,4 +1,4 @@
-package com.example.fyp_hydration_app_mate
+package com.example.fyp_hydration_app_mate.activities
 
 import android.os.Bundle
 import android.widget.Toast
