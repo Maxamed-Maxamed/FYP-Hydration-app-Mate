@@ -36,7 +36,7 @@ class HydrationActivity : AppCompatActivity() {
 
 
                 binding.hydrationGoalButton.setOnClickListener {
-            val enteredGoal = binding.hydrationGoalTextView.text.toString().trim()  //Returns a string having leading and trailing whitespace removed.
+            val enteredGoal = binding.hydrationGoalTextView.text.toString().trim()  // TODO: 1. Removes all spaces from text except for single spaces between words.
 
             if (enteredGoal.isEmpty() || enteredGoal.toInt() <= 0) {
                 binding.hydrationGoalTextView.error = "Please Enter a Valid Hydration Goal"
