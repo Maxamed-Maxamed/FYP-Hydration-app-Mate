@@ -1,87 +1,91 @@
 package com.example.fyp_hydration_app_mate.activities
 
 import android.os.Bundle
-
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationBinding
 import com.example.fyp_hydration_app_mate.models.HydrationModel
 import timber.log.Timber
 import timber.log.Timber.Forest.i
 
-
 class HydrationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHydrationBinding
     private var hydrationModel = HydrationModel()
 
-   private val hydrationModelsArray = ArrayList<HydrationModel>()
+    // ArrayList to store instances of HydrationModel
+    private val hydrationModelsArray = ArrayList<HydrationModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Set up view binding
         binding = ActivityHydrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialize Timber for logging
         Timber.plant(Timber.DebugTree())
         i("Hydration Activity Created")
 
+        // Set a click listener for the hydration goal button
+        binding.hydrationGoalButton.setOnClickListener {
+            /* This code block is responsible for validating the entered hydration goal. */
+
+            // Get the entered hydration goal from the TextView
+            val enteredGoal = binding.hydrationGoalTextView.text.toString()
+
+            if (enteredGoal.isEmpty()) {
+                // If the goal is not valid, display an error message and return
+                binding.hydrationGoalTextView.error = "Please Enter a Valid Hydration Goal"
+                i("Please Enter a Valid Hydration Goal")
+                binding.hydrationGoalTextView.requestFocus()
+                binding.hydrationGoalTextView.selectAll()
+
+                // Log hydration goals from the array
+                for (i in hydrationModelsArray.indices) {
+                    i("Hydration Goal: ${hydrationModelsArray[i].hydrationGoal}")
+                }
+
+                return@setOnClickListener
+
+        }
+            else if (!enteredGoal.matches(Regex("\\d+"))) {
+            // If the entered goal contains non-numeric characters, display an error message
+            binding.hydrationGoalTextView.error = "Invalid Input. Please enter a numeric value."
+            i("Invalid Input. Please enter a numeric value.")
+            binding.hydrationGoalTextView.requestFocus()
+            binding.hydrationGoalTextView.selectAll()
+        }else {
+
+                // Create an instance of HydrationModel
 
 
+                /* This code block is executed when the entered hydration goal is valid. */
 
-      binding.hydrationGoalButton.setOnClickListener {
-          val enteredGoal = binding.hydrationGoalTextView.text.toString() .trim()  // TODO: 1. Removes all spaces from text except for single spaces between words.
+                // Clear error, clear focus, and set the hydration goal in the model
+                binding.hydrationGoalTextView.error = null
+                binding.hydrationGoalTextView.clearFocus()
+                val hydrationValue = enteredGoal.toString().toInt()
+                hydrationModel.hydrationGoal = hydrationValue
 
-          if (enteredGoal.isEmpty() || enteredGoal.toInt() <= 0) {
+                // Set currentHydration to the entered value
+                hydrationModel.currentHydration = hydrationValue
 
-              hydrationModelsArray.add(hydrationModel)
-              binding.hydrationGoalTextView.error = "Please Enter a Valid Hydration Goal"
+                // Log hydration goal and current hydration
+                i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
 
-              i("Please Enter a Valid Hydration Goal")
-              binding.hydrationGoalTextView.requestFocus()
-              binding.hydrationGoalTextView.selectAll()
+                // TODO: You have a duplicate log statement here; consider removing one of them
 
-              for (i in hydrationModelsArray.indices) {
-
-                  i("Hydration Goal: ${hydrationModelsArray[i].hydrationGoal}")
-              }
-
-              return@setOnClickListener // TODO: 1. If the goal is not valid, display an error message and return.
-
-
-
-
-          }
+                // Add the hydration goal to the array
+                hydrationModelsArray.add(hydrationModel)
+                i("Hydration Goal Array Size: ${hydrationModelsArray.size}")
+                // TODO: You might want to display a success message here
 
 
-          else {
-
-              binding.hydrationGoalTextView.error = null
-              binding.hydrationGoalTextView.clearFocus()
-              hydrationModel.hydrationGoal = enteredGoal.toInt()
-              hydrationModelsArray.add(hydrationModel)
-              val hydrationValue = enteredGoal.toInt()
-              hydrationModel.hydrationGoal = hydrationValue
-              hydrationModel.currentHydration = hydrationValue  // Set currentHydration to the entered value.
-              i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
-              i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
-              return@setOnClickListener
-              // TODO: 1. If the goal is valid, set the hydration goal and display a success message.
-              // TODO: 2. Set the current hydration to the entered goal.
-              // TODO: 3. Add the hydration goal to the array.
-              // TODO: 4. Display a success message.
-
-          }
-
-
-
-      }
-
-
+                return@setOnClickListener
+            }
+        }
     }
 
-
-
-
-
+    // Other lifecycle methods with logging
     override fun onStart() {
         super.onStart()
         i("Hydration Activity Started")
