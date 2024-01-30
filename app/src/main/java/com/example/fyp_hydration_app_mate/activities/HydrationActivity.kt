@@ -60,7 +60,11 @@ class HydrationActivity : AppCompatActivity() {
                 // If the entered goal contains non-numeric characters, display an error message
                 binding.hydrationGoalTextView.error = "Invalid Input. Please enter a numeric value."
                 i("Invalid Input. Please enter a numeric value.")
+
+                // Request focus on the EditText for user correction
                 binding.hydrationGoalTextView.requestFocus()
+
+                // Select all text in the EditText to allow easy replacement of invalid input
                 binding.hydrationGoalTextView.selectAll()
             }
             else {
