@@ -70,7 +70,7 @@ class HydrationActivity : AppCompatActivity() {
                 // Clear error, clear focus, and set the hydration goal in the model
                 binding.hydrationGoalTextView.error = null
                 binding.hydrationGoalTextView.clearFocus()
-                val hydrationValue = enteredGoal.toString().toInt()
+                val hydrationValue = enteredGoal.toInt()
                 hydrationModel.hydrationGoal = hydrationValue
 
                 // Set currentHydration to the entered value
@@ -85,9 +85,14 @@ class HydrationActivity : AppCompatActivity() {
                 hydrationModelsArray.add(hydrationModel)
                 i("Hydration Goal Array Size: ${hydrationModelsArray.size}")
                 // TODO: You might want to display a success message here
+                binding.hydrationGoalTextView.setText("")
 
                 return@setOnClickListener
             }
+
+            // TODO: You might want to display a success message here
+            binding.hydrationGoalTextView.setText("")
+            return@setOnClickListener
         }
     }
 
