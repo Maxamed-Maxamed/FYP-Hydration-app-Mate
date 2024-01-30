@@ -62,6 +62,7 @@ class HydrationActivity : AppCompatActivity() {
                 // Log hydration goals from the array
                 for (i in app.hydrationModelMain.indices) {
                     i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+                    i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
                 }
 
                 return@setOnClickListener
