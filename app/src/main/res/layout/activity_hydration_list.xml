@@ -16,7 +16,7 @@
       android:background="@color/colorAccent"
       android:fitsSystemWindows="true"
       app:elevation="0dip"
-      app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+      app:theme="@style/Theme.AppCompat.Light.NoActionBar"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent">
@@ -30,6 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
   </com.google.android.material.appbar.AppBarLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scrollbars="vertical"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
   <!-- Your other views go here -->
 
