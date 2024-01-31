@@ -21,6 +21,8 @@ class HydrationListActivity : AppCompatActivity() {
 
         binding = ActivityHydrationListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = title
+        setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
 
@@ -34,8 +36,6 @@ class HydrationAdapter(private val hydrationModelMain: List<HydrationModel>) :
     RecyclerView.Adapter<HydrationAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-
-
         val binding = CardHydrationBinding.inflate( LayoutInflater.from(parent.context), parent, false)
 
             return MainHolder(binding)
@@ -53,7 +53,7 @@ class HydrationAdapter(private val hydrationModelMain: List<HydrationModel>) :
     }
 
 
-    class MainHolder(val binding: CardHydrationBinding) : RecyclerView.ViewHolder(binding.root)
+    class MainHolder(private val binding: CardHydrationBinding) : RecyclerView.ViewHolder(binding.root)
     {
 
         fun binding(hydrationModel: HydrationModel)

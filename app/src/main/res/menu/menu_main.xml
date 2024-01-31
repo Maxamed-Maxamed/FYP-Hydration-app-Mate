@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--         <item-->
+<!--            android:id="@+id/item_list"-->
+<!--            android:icon="@android:drawable/ic_menu_agenda"-->
+<!--            android:title="@string/menu_listHydration"-->
+<!--            app:showAsAction="always" />-->
+
+        <item
+            android:id="@+id/item_add"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="@string/menu_addHydration"
+            app:showAsAction="always"
+            android:background="@android:color/white"
+            />
+
+</menu>

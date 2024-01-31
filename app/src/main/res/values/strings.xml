@@ -4,4 +4,29 @@
     <string name="current_hydration_goal">Current Hydration Goal</string>
     <string name="set_hydration_goal">Set Hydration Goal</string>
 
+
+
+    //Todo Add more strings
+    <string name="menu_addHydration">Add</string>
+
+
+
+    ///Todo Add more strings
+    <string name="menu_hydrationList">Hydration List</string>
+    <string name="menu_hydration">Hydration</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+
+    //Todo Add more strings
+    <string name="menu_logout">Logout</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_register">Register</string>
+
+
+    //Todo Add more strings
+
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_listHydration">List Hydration</string>
+
 </resources>
