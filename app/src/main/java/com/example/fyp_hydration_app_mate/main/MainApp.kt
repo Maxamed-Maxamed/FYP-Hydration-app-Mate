@@ -14,7 +14,7 @@ class MainApp : Application() {
 
         Timber.plant(Timber.DebugTree())
         Timber.i("Main App Created")
-
+        hydrationModelMain.add(HydrationModel(200, 200))
     }
 
 }

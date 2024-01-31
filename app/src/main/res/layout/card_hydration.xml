@@ -3,7 +3,6 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
@@ -37,6 +36,7 @@
             android:textSize="14sp"/>
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -47,18 +47,7 @@
             android:indeterminate="false"
             android:indeterminateTint="#0000FF"
             android:indeterminateTintMode="src_atop"
-            android:indeterminateAnimationDuration="1000"
-
-            app:progress="50"
-            app:progressTint="#0000FF"
-            app:progressTintMode="src_atop"
-            app:indeterminate="false"
-            app:indeterminateTint="#0000FF"
-            app:indeterminateTintMode="src_atop"
-            app:indeterminateAnimationDuration="1000"
-
             />
-
         <!-- Add more views as needed -->
 
     </LinearLayout>
