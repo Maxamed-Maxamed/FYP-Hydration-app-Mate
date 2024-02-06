@@ -1,7 +1,5 @@
-// Package declaration for the current Kotlin file
 package com.example.fyp_hydration_app_mate.activities
 
-// Import necessary classes and libraries
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,91 +11,50 @@ import com.example.fyp_hydration_app_mate.models.HydrationModel
 import timber.log.Timber
 import timber.log.Timber.Forest.i
 
-// Class declaration for the main activity named "HydrationActivity"
 class HydrationActivity : AppCompatActivity() {
-
-    // Late-initialized variable for view binding
     private lateinit var binding: ActivityHydrationBinding
-
-    // Instance of the HydrationModel class
     private var hydrationModel = HydrationModel()
-
-    //    private val hydrationModelsArray = ArrayList<HydrationModel>()
     private lateinit var app: MainApp
 
-    // Override the onCreate method for activity initialization
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Set up view binding
         binding = ActivityHydrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // Set the title of the toolbar
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
-
-        // Enable the back button in the toolbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // Set the click listener for the back button
         binding.toolbarAdd.setNavigationOnClickListener {
-            // Navigate back to the previous activity
             finish()
         }
-        // Enable the back button in the toolbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // Initialize Timber for logging
         Timber.plant(Timber.DebugTree())
         i("Hydration Activity Created")
-
         app = application as MainApp
 
-        // Set a click listener for the hydration goal button
         binding.hydrationGoalButton.setOnClickListener {
-
-            /* This code block is responsible for validating the entered hydration goal. */
-            // Get the entered hydration goal from the TextView
             val enteredGoal = binding.hydrationGoalTextView.text.toString()
             if (enteredGoal.isEmpty()) {
-                // If the goal is not valid, display an error message and return
                 binding.hydrationGoalTextView.error = "Please Enter a Valid Hydration Goal"
                 i("Please Enter a Valid Hydration Goal")
                 binding.hydrationGoalTextView.requestFocus()
                 binding.hydrationGoalTextView.selectAll()
-
-                app.hydrationModelMain.add(hydrationModel.copy())
-
-
-                // Log hydration goals from the array
                 for (i in app.hydrationModelMain.indices) {
                     i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
                     i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+                    return@setOnClickListener
                 }
-
-                return@setOnClickListener
             } else if (!enteredGoal.matches(Regex("\\d+"))) {
-                // If the entered goal contains non-numeric characters, display an error message
                 binding.hydrationGoalTextView.error = "Invalid Input. Please enter a numeric value."
                 i("Invalid Input. Please enter a numeric value.")
-
-                // Request focus on the EditText for user correction
                 binding.hydrationGoalTextView.requestFocus()
-
-                // Select all text in the EditText to allow easy replacement of invalid input
                 binding.hydrationGoalTextView.selectAll()
             } else {
-                /* This code block is executed when the entered hydration goal is valid. */
-                // Clear error, clear focus, and set the hydration goal in the model
                 binding.hydrationGoalTextView.error = null
                 binding.hydrationGoalTextView.clearFocus()
                 val hydrationValue = enteredGoal.toInt()
                 hydrationModel.hydrationGoal = hydrationValue
-                // Set currentHydration to the entered value
-                hydrationModel.currentHydration = hydrationValue
-
-                // Log hydration goal and current hydration
+                app.hydrationModelMain.add(hydrationModel.copy())
                 i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
-
-                // TODO: You have a duplicate log statement here; consider removing one of them
-                // Add the hydration goal to the array
                 i("Hydration Goal Array Size: ${app.hydrationModelMain.size}")
                 binding.hydrationGoalTextView.setText("")
                 return@setOnClickListener
@@ -105,7 +62,6 @@ class HydrationActivity : AppCompatActivity() {
         }
     }
 
-    // Override the onCreateOptionsMenu method
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_hydration_cancel, menu)
         return super.onCreateOptionsMenu(menu)
@@ -114,14 +70,96 @@ class HydrationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_cancel -> {
-                // Handle cancel action here, for example, finish the activity
                 finish()
                 return true
             }
 
             else -> {
-                return super.onOptionsItemSelected(item)
+                super.onOptionsItemSelected(item)
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        i("Hydration Activity Started")
+        for (i in app.hydrationModelMain.indices) {
+            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+            return@onStart
+        }
+    }
+
+
+    override fun onPause() {
+            super.onPause()
+            i("Hydration Activity Paused")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        i("Hydration Activity Resumed")
+        binding.hydrationGoalTextView.setText("")
+        for (i in app.hydrationModelMain.indices) {
+                    i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+                    i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+                    return@onResume
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        i("Hydration Activity Destroyed")
+        Timber.uprootAll()
+        Timber.plant(Timber.DebugTree())
+        Timber.i("Timber Destroyed")
+        for (i in app.hydrationModelMain.indices) {
+            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+            return@onDestroy
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        i("Hydration Activity Stopped")
+        for (i in app.hydrationModelMain.indices) {
+            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+            return@onStop
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        i("Hydration Activity Restarted")
+        for (i in app.hydrationModelMain.indices) {
+            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+            return@onRestart
+
+
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        i("Hydration Activity Saved")
+        for (i in app.hydrationModelMain.indices) {
+            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+            return@onSaveInstanceState
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
