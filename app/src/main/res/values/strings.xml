@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FYP-Hydration-app-Mate</string>
+    <string name="app_name">Hydration-Mate</string>
     <string name="enter_Hydration">Enter Hydration Goal (cups/day ) </string>
     <string name="current_hydration_goal">Current Hydration Goal</string>
     <string name="set_hydration_goal">Set Hydration Goal</string>
@@ -9,6 +9,8 @@
     //Todo Add more strings
     <string name="menu_addHydration">Add</string>
 
+    <string name="menu_cancelHydration">Cancel</string>
+    <string name="menu_editHydration">Edit</string>
 
 
     ///Todo Add more strings

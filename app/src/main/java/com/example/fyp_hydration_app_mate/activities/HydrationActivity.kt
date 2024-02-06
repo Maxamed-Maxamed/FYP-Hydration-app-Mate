@@ -3,7 +3,10 @@ package com.example.fyp_hydration_app_mate.activities
 
 // Import necessary classes and libraries
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationBinding
 import com.example.fyp_hydration_app_mate.main.MainApp
 import com.example.fyp_hydration_app_mate.models.HydrationModel
@@ -19,22 +22,28 @@ class HydrationActivity : AppCompatActivity() {
     // Instance of the HydrationModel class
     private var hydrationModel = HydrationModel()
 
-
-    // ArrayList to store instances of HydrationModel
-//    private val hydrationModelsArray = ArrayList<HydrationModel>()
-
+    //    private val hydrationModelsArray = ArrayList<HydrationModel>()
     private lateinit var app: MainApp
-
-
 
     // Override the onCreate method for activity initialization
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // Set up view binding
         binding = ActivityHydrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Set the title of the toolbar
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
 
+        // Enable the back button in the toolbar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Set the click listener for the back button
+        binding.toolbarAdd.setNavigationOnClickListener {
+            // Navigate back to the previous activity
+            finish()
+        }
+        // Enable the back button in the toolbar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // Initialize Timber for logging
         Timber.plant(Timber.DebugTree())
         i("Hydration Activity Created")
@@ -45,10 +54,8 @@ class HydrationActivity : AppCompatActivity() {
         binding.hydrationGoalButton.setOnClickListener {
 
             /* This code block is responsible for validating the entered hydration goal. */
-
             // Get the entered hydration goal from the TextView
             val enteredGoal = binding.hydrationGoalTextView.text.toString()
-
             if (enteredGoal.isEmpty()) {
                 // If the goal is not valid, display an error message and return
                 binding.hydrationGoalTextView.error = "Please Enter a Valid Hydration Goal"
@@ -56,7 +63,7 @@ class HydrationActivity : AppCompatActivity() {
                 binding.hydrationGoalTextView.requestFocus()
                 binding.hydrationGoalTextView.selectAll()
 
-                    app.hydrationModelMain.add(hydrationModel.copy())
+                app.hydrationModelMain.add(hydrationModel.copy())
 
 
                 // Log hydration goals from the array
@@ -66,9 +73,7 @@ class HydrationActivity : AppCompatActivity() {
                 }
 
                 return@setOnClickListener
-            }
-
-            else if (!enteredGoal.matches(Regex("\\d+"))) {
+            } else if (!enteredGoal.matches(Regex("\\d+"))) {
                 // If the entered goal contains non-numeric characters, display an error message
                 binding.hydrationGoalTextView.error = "Invalid Input. Please enter a numeric value."
                 i("Invalid Input. Please enter a numeric value.")
@@ -78,17 +83,13 @@ class HydrationActivity : AppCompatActivity() {
 
                 // Select all text in the EditText to allow easy replacement of invalid input
                 binding.hydrationGoalTextView.selectAll()
-            }
-            else {
-                // Create an instance of HydrationModel and add it to the ArrayList
+            } else {
                 /* This code block is executed when the entered hydration goal is valid. */
-
                 // Clear error, clear focus, and set the hydration goal in the model
                 binding.hydrationGoalTextView.error = null
                 binding.hydrationGoalTextView.clearFocus()
                 val hydrationValue = enteredGoal.toInt()
                 hydrationModel.hydrationGoal = hydrationValue
-
                 // Set currentHydration to the entered value
                 hydrationModel.currentHydration = hydrationValue
 
@@ -96,49 +97,31 @@ class HydrationActivity : AppCompatActivity() {
                 i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
 
                 // TODO: You have a duplicate log statement here; consider removing one of them
-
                 // Add the hydration goal to the array
-
                 i("Hydration Goal Array Size: ${app.hydrationModelMain.size}")
                 binding.hydrationGoalTextView.setText("")
-
                 return@setOnClickListener
             }
-
-            // TODO: You might want to display a success message here
-            binding.hydrationGoalTextView.setText("")
-            return@setOnClickListener
         }
     }
 
-    // Other lifecycle methods with logging
-    // Override the onStart method
-    override fun onStart() {
-        super.onStart()
-        i("Hydration Activity Started")
+    // Override the onCreateOptionsMenu method
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_hydration_cancel, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
-    // Override the onResume method
-    override fun onResume() {
-        super.onResume()
-        i("Hydration Activity Resumed")
-    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.item_cancel -> {
+                // Handle cancel action here, for example, finish the activity
+                finish()
+                return true
+            }
 
-    // Override the onPause method
-    override fun onPause() {
-        super.onPause()
-        i("Hydration Activity Paused")
-    }
-
-    // Override the onStop method
-    override fun onStop() {
-        super.onStop()
-        i("Hydration Activity Stopped")
-    }
-
-    // Override the onDestroy method
-    override fun onDestroy() {
-        super.onDestroy()
-        i("Hydration Activity Destroyed")
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
     }
 }

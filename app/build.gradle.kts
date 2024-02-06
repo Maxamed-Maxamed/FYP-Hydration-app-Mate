@@ -59,4 +59,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0")
 
+
+
+    //firebase
+    implementation("com.google.firebase:firebase-analytics:21.5.0")
+
+
 }

@@ -6,26 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    tools:context=".activities.HydrationActivity"
-    >
+    tools:context=".activities.HydrationActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@color/md_theme_light_primary"
         android:fitsSystemWindows="true"
         app:elevation="0dip"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:theme="@style/Theme.AppCompat.Light.NoActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAdd"
             android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/purple_500" />
+            app:titleTextColor="@color/colorPrimary"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -54,11 +54,7 @@
                 android:maxLines="1"
                 android:padding="8dp"
                 android:textColor="#333333"
-             android:textSize="14sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/hydrationGoalButton" />
+                android:textSize="14sp"/>
 
             <Button
                 android:id="@+id/hydrationGoalButton"
@@ -71,11 +67,13 @@
                 android:stateListAnimator="@null"
                 android:text="@string/set_hydration_goal"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/hydrationGoalTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:textSize="16sp"/>
+
+
+
+
+
+
 
         </LinearLayout>
     </ScrollView>
