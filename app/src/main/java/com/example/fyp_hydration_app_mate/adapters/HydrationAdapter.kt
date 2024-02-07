@@ -31,10 +31,7 @@ class HydrationAdapter(private val hydrationModelMain: List<HydrationModel>) :
 
         fun binding(hydrationModel: HydrationModel)
         {
-            binding.textViewDescription.text = hydrationModel.hydrationGoal.toString().toInt().toString()
-            binding.textViewTitle.text = hydrationModel.currentHydration.toString().toInt().toString()
-            binding.progressBar.progress = hydrationModel.currentHydration.toString().toInt()
-            binding.progressBar.max = hydrationModel.hydrationGoal.toString().toInt()
+            binding.textViewTitle.text = hydrationModel.hydrationGoal.toString().toInt().toString()
         }
 
 

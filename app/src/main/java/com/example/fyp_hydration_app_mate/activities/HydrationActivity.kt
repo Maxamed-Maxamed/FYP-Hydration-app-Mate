@@ -40,7 +40,7 @@ class HydrationActivity : AppCompatActivity() {
                 binding.hydrationGoalTextView.selectAll()
                 for (i in app.hydrationModelMain.indices) {
                     i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-                    i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+
                     return@setOnClickListener
                 }
             } else if (!enteredGoal.matches(Regex("\\d+"))) {
@@ -54,7 +54,7 @@ class HydrationActivity : AppCompatActivity() {
                 val hydrationValue = enteredGoal.toInt()
                 hydrationModel.hydrationGoal = hydrationValue
                 app.hydrationModelMain.add(hydrationModel.copy())
-                i("Hydration Goal: ${hydrationModel.hydrationGoal} ml, Current Hydration: ${hydrationModel.currentHydration} ml")
+                i("Hydration Goal: ${hydrationModel.hydrationGoal} ml")
                 i("Hydration Goal Array Size: ${app.hydrationModelMain.size}")
                 binding.hydrationGoalTextView.setText("")
                 return@setOnClickListener
@@ -85,7 +85,7 @@ class HydrationActivity : AppCompatActivity() {
         i("Hydration Activity Started")
         for (i in app.hydrationModelMain.indices) {
             i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+
             return@onStart
         }
     }
@@ -102,7 +102,7 @@ class HydrationActivity : AppCompatActivity() {
         binding.hydrationGoalTextView.setText("")
         for (i in app.hydrationModelMain.indices) {
                     i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-                    i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+
                     return@onResume
         }
     }
@@ -116,7 +116,6 @@ class HydrationActivity : AppCompatActivity() {
         Timber.i("Timber Destroyed")
         for (i in app.hydrationModelMain.indices) {
             i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
             return@onDestroy
         }
     }
@@ -127,7 +126,6 @@ class HydrationActivity : AppCompatActivity() {
         i("Hydration Activity Stopped")
         for (i in app.hydrationModelMain.indices) {
             i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
             return@onStop
         }
     }
@@ -137,7 +135,7 @@ class HydrationActivity : AppCompatActivity() {
         i("Hydration Activity Restarted")
         for (i in app.hydrationModelMain.indices) {
             i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
+
             return@onRestart
 
 
@@ -149,7 +147,6 @@ class HydrationActivity : AppCompatActivity() {
         i("Hydration Activity Saved")
         for (i in app.hydrationModelMain.indices) {
             i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            i("Current Hydration: ${app.hydrationModelMain[i].currentHydration}")
             return@onSaveInstanceState
         }
     }
