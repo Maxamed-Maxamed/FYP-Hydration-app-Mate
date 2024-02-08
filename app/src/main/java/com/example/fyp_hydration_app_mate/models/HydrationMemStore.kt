@@ -40,6 +40,12 @@ class HydrationMemStore : HydrationStore {
     fun deleteAll() {
         hydrationList.clear()
     }
+    fun delete(hydrationModel: HydrationModel) {
+        hydrationList.remove(hydrationModel)
+    }
+
+
+    
 
 
 
