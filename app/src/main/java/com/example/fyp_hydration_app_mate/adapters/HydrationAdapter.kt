@@ -20,7 +20,6 @@ class HydrationAdapter(private val hydrationModelMain: List<HydrationModel>) :
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-
         val hydration = hydrationModelMain[holder.adapterPosition]
         holder.binding(hydration)
     }
@@ -32,6 +31,9 @@ class HydrationAdapter(private val hydrationModelMain: List<HydrationModel>) :
         fun binding(hydrationModel: HydrationModel)
         {
             binding.textViewTitle.text = hydrationModel.hydrationGoal.toString().toInt().toString()
+            //new things trying to set text
+            binding.textViewTitle.setText(hydrationModel.hydrationGoal.toString().toInt().toString())
+            binding.textViewTitle.setText("${hydrationModel.hydrationGoal}")
         }
 
 

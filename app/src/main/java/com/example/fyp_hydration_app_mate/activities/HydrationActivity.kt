@@ -38,9 +38,9 @@ class HydrationActivity : AppCompatActivity() {
                 i("Please Enter a Valid Hydration Goal")
                 binding.hydrationGoalTextView.requestFocus()
                 binding.hydrationGoalTextView.selectAll()
-                for (i in app.hydrationModelMain.indices) {
-                    i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
+                for (i in app.hydrationModelMain2.findAll().indices) {
 
+//                    i("Hydration Goal: ${app.hydrationModelMain2.findAll()[i].hydrationGoal}")
                     return@setOnClickListener
                 }
             } else if (!enteredGoal.matches(Regex("\\d+"))) {
@@ -53,9 +53,10 @@ class HydrationActivity : AppCompatActivity() {
                 binding.hydrationGoalTextView.clearFocus()
                 val hydrationValue = enteredGoal.toInt()
                 hydrationModel.hydrationGoal = hydrationValue
-                app.hydrationModelMain.add(hydrationModel.copy())
+                app.hydrationModelMain2.create(hydrationModel.copy())
                 i("Hydration Goal: ${hydrationModel.hydrationGoal} ml")
-                i("Hydration Goal Array Size: ${app.hydrationModelMain.size}")
+
+                app.hydrationModelMain2.logAll()
                 binding.hydrationGoalTextView.setText("")
                 return@setOnClickListener
             }
@@ -79,80 +80,6 @@ class HydrationActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        i("Hydration Activity Started")
-        for (i in app.hydrationModelMain.indices) {
-            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-
-            return@onStart
-        }
-    }
-
-
-    override fun onPause() {
-            super.onPause()
-            i("Hydration Activity Paused")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        i("Hydration Activity Resumed")
-        binding.hydrationGoalTextView.setText("")
-        for (i in app.hydrationModelMain.indices) {
-                    i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-
-                    return@onResume
-        }
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        i("Hydration Activity Destroyed")
-        Timber.uprootAll()
-        Timber.plant(Timber.DebugTree())
-        Timber.i("Timber Destroyed")
-        for (i in app.hydrationModelMain.indices) {
-            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            return@onDestroy
-        }
-    }
-
-
-    override fun onStop() {
-        super.onStop()
-        i("Hydration Activity Stopped")
-        for (i in app.hydrationModelMain.indices) {
-            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            return@onStop
-        }
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        i("Hydration Activity Restarted")
-        for (i in app.hydrationModelMain.indices) {
-            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-
-            return@onRestart
-
-
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        i("Hydration Activity Saved")
-        for (i in app.hydrationModelMain.indices) {
-            i("Hydration Goal: ${app.hydrationModelMain[i].hydrationGoal}")
-            return@onSaveInstanceState
-        }
-    }
-
-
-
 
 
 
