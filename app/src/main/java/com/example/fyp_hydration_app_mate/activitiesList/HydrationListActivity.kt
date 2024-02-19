@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.activities.HydrationActivity
 import com.example.fyp_hydration_app_mate.adapters.HydrationAdapter
-class HydrationListActivity : AppCompatActivity() {
+import com.example.fyp_hydration_app_mate.adapters.HydrationListener
+import com.example.fyp_hydration_app_mate.models.HydrationModel
+
+class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
     private lateinit var app: MainApp
     private lateinit var binding: ActivityHydrationListBinding
@@ -29,7 +32,12 @@ class HydrationListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = HydrationAdapter(app.hydrationModelMain2.findAll())
+          binding.recyclerView.adapter = HydrationAdapter(app.hydrationModelMain2.findAll(), this)
+
+
+
+
+
     }
 
 
@@ -37,8 +45,6 @@ class HydrationListActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
-
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -56,15 +62,41 @@ class HydrationListActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.hydrationModelMain2.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(
+                    0,
+                    app.hydrationModelMain2.findAll().size
+                )
             }
+        }
+
+
+
+
+    override fun onHydrationClick(hydrationModel: HydrationModel) {
+        val launcherIntent   = Intent(this, HydrationActivity::class.java)
+        launcherIntent.putExtra("hydrationEditModel", hydrationModel)
+        getClickResult.launch(launcherIntent)
+
+
+    }
+
+    private val getClickResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+        ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            (binding.recyclerView.adapter)?.notifyItemRangeChanged(
+                0,
+                app.hydrationModelMain2.findAll().size
+
+
+            )
+
         }
 
 
 }
 
 
-
+}
 
 

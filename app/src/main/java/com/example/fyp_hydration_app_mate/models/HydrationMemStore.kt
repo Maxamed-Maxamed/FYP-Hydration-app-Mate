@@ -7,22 +7,6 @@ class HydrationMemStore : HydrationStore {
 
     private val hydrationList = ArrayList<HydrationModel>()
 
-//    override fun findAll(): List<HydrationModel> {
-//        return hydrationList.toList()
-//    }
-//
-//    override fun create(hydrationModel: HydrationModel) {
-//      hydrationList.add(hydrationModel)
-//        return hydrationList.forEach{ i("${it}") }
-//    }
-//
-//
-//    fun logAll() {
-//        i("Hydration List")
-//        return hydrationList.forEach{ i("${it}") }
-//
-//
-//    }
 
     override fun findAll(): List<HydrationModel> {
         return hydrationList
@@ -33,12 +17,20 @@ class HydrationMemStore : HydrationStore {
         Timber.i("Hydration record added: $hydrationModel")
     }
 
-    fun logAll() {
-        hydrationList.forEach { Timber.i("${it}") }
+    override fun logAll() {
+       Timber.i("Hydration list: $hydrationList")
+
+    }
+
+    override fun update(hydrationModel: HydrationModel) {
+        val foundHydrationModel: HydrationModel? = hydrationList.find { p -> p.id == hydrationModel.id }
+        if (foundHydrationModel != null) {
+            foundHydrationModel.hydrationGoal = hydrationModel.hydrationGoal
+        }
     }
 
     fun deleteAll() {
-        hydrationList.clear()
+        hydrationList.removeAll(hydrationList)
     }
     fun delete(hydrationModel: HydrationModel) {
         hydrationList.remove(hydrationModel)

@@ -7,6 +7,18 @@
           <accountId value="VXNlcjoxNjI0MTM=" />
           <internalId value="baf35188-1206-4ca6-ac95-8e632d1adb16" />
         </chat>
+        <chat>
+          <accountId value="VXNlcjoxNjI0MTM=" />
+          <internalId value="18b8d82d-2187-4623-a48d-daeda58365e9" />
+        </chat>
+        <chat>
+          <accountId value="VXNlcjoxNjI0MTM=" />
+          <internalId value="d0639c86-07d1-41b4-905d-8b733ff15d18" />
+        </chat>
+        <chat>
+          <accountId value="VXNlcjoxNjI0MTM=" />
+          <internalId value="915e3726-84ef-4094-a884-7db51043b729" />
+        </chat>
       </list>
     </chats>
   </component>

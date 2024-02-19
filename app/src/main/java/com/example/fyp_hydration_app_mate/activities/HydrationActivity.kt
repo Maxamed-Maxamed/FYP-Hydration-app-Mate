@@ -31,6 +31,19 @@ class HydrationActivity : AppCompatActivity() {
         i("Hydration Activity Created")
         app = application as MainApp
 
+        if (intent.hasExtra("hydration")) {
+            hydrationModel = intent.getParcelableExtra("hydration_Edit")!!
+
+            binding.hydrationGoalTextView.setText(hydrationModel.hydrationGoal.toString())
+//            binding.hydrationGoalTextView.setSelection(binding.hydrationGoalTextView.text.length)
+        }
+        else {
+            hydrationModel.hydrationGoal = 0
+        }
+
+
+
+
         binding.hydrationGoalButton.setOnClickListener {
             val enteredGoal = binding.hydrationGoalTextView.text.toString()
             if (enteredGoal.isEmpty()) {
@@ -69,16 +82,13 @@ class HydrationActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.item_cancel -> {
-                finish()
-                return true
-            }
+       when (item.itemId) {
+           R.id.item_cancel -> {
+               finish()
+           }
 
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
+       }
+        return super.onOptionsItemSelected(item)
     }
 
 

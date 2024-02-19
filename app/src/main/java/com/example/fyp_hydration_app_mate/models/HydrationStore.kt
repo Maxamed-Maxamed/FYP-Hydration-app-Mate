@@ -8,6 +8,11 @@ interface HydrationStore {
 
     fun create(hydrationModel: HydrationModel)
 
+    fun logAll()
+
+    fun update(hydrationModel: HydrationModel)
+
+
 //    fun edit(hydrationModel: HydrationModel)
 //
 //    fun update(hydrationModel: HydrationModel)
