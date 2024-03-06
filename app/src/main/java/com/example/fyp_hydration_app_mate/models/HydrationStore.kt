@@ -12,6 +12,10 @@ interface HydrationStore {
 
     fun update(hydrationModel: HydrationModel)
 
+    fun delete(hydrationModel: HydrationModel)
+
+//    fun deleteAll(hydrationModel: HydrationModel)
+
 
 //    fun edit(hydrationModel: HydrationModel)
 //

@@ -18,6 +18,18 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         Timber.i("Main App Created")
+
+        hydrationModelMain2.findAll().forEach {
+
+            Timber.i("Hydration Model Main List Size findAll: " + it.copy())
+
+        }
+        hydrationModelMain2.logAll()
+        Timber.i("Hydration Model Main List Size findAll: " + hydrationModelMain2.logAll())
+
+
+
+
 //        hydrationModelMain.add(HydrationModel(200, 200))
 //        Timber.i("Hydration Model Main List Size: " + hydrationModelMain.size)
     }

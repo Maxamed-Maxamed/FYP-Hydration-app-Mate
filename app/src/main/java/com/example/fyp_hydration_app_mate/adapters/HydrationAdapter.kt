@@ -29,6 +29,11 @@ class HydrationAdapter constructor(
         holder.bind(hydration, listener)
     }
 
+    fun getHydrationAtPosition(position: Int): HydrationModel {
+        return hydrationModelMain[position]
+    }
+
+
     class MainHolder(private val binding: CardHydrationBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hydrationModel: HydrationModel, listener: HydrationListener) {

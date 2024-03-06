@@ -8,6 +8,7 @@ import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationBinding
 import com.example.fyp_hydration_app_mate.main.MainApp
 import com.example.fyp_hydration_app_mate.models.HydrationModel
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import timber.log.Timber.Forest.i
 
@@ -55,12 +56,15 @@ class HydrationActivity : AppCompatActivity() {
 
 //                    i("Hydration Goal: ${app.hydrationModelMain2.findAll()[i].hydrationGoal}")
                     return@setOnClickListener
+
                 }
             } else if (!enteredGoal.matches(Regex("\\d+"))) {
                 binding.hydrationGoalTextView.error = "Invalid Input. Please enter a numeric value."
                 i("Invalid Input. Please enter a numeric value.")
                 binding.hydrationGoalTextView.requestFocus()
                 binding.hydrationGoalTextView.selectAll()
+
+
             } else {
                 binding.hydrationGoalTextView.error = null
                 binding.hydrationGoalTextView.clearFocus()
@@ -72,8 +76,25 @@ class HydrationActivity : AppCompatActivity() {
                 app.hydrationModelMain2.logAll()
                 binding.hydrationGoalTextView.setText("")
                 return@setOnClickListener
+
+           Snackbar.make(binding.root, "Hydration Goal Added", Snackbar.LENGTH_LONG)
             }
+
         }
+
+        // Get hydration model if editing
+        if (intent.hasExtra("hydrationEditModel")) {
+            hydrationModel = intent.getParcelableExtra("hydrationEditModel")!!
+
+            binding.hydrationGoalTextView.setText(hydrationModel.hydrationGoal.toString())
+        }
+
+// Save updated model
+        app.hydrationModelMain2.update(hydrationModel)
+
+// Pass back index to update
+        intent.putExtra("index", app.hydrationModelMain2.findAll().indexOf(hydrationModel))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
