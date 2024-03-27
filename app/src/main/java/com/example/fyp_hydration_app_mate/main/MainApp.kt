@@ -7,10 +7,6 @@ import timber.log.Timber
 
 class MainApp : Application() {
 
-//    val hydrationModelMain = arrayListOf<HydrationModel>()
-
-
-//    val hydrationModelMain2 = arrayListOf<HydrationMemStore>()
 
    val  hydrationModelMain2 = HydrationMemStore()
 
@@ -28,10 +24,6 @@ class MainApp : Application() {
         Timber.i("Hydration Model Main List Size findAll: " + hydrationModelMain2.logAll())
 
 
-
-
-//        hydrationModelMain.add(HydrationModel(200, 200))
-//        Timber.i("Hydration Model Main List Size: " + hydrationModelMain.size)
     }
 
 }
