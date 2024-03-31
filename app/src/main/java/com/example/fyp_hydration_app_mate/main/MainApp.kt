@@ -2,7 +2,6 @@ package com.example.fyp_hydration_app_mate.main
 
 import android.app.Application
 import com.example.fyp_hydration_app_mate.models.HydrationMemStore
-import com.example.fyp_hydration_app_mate.models.HydrationModel
 import timber.log.Timber
 
 class MainApp : Application() {
@@ -22,8 +21,6 @@ class MainApp : Application() {
         }
         hydrationModelMain2.logAll()
         Timber.i("Hydration Model Main List Size findAll: " + hydrationModelMain2.logAll())
-
-
     }
 
 }
