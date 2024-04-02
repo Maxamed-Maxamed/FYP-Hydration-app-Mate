@@ -54,8 +54,9 @@ class HydrationJSONStore(private val context: Context) : HydrationStore {
         try {
             val jsonString = gson.toJson(hydrationList, listType)
             FileHelper.write(context, HYDRATION_JSON_FILE, jsonString)
+            Timber.i("Serialization successful")
         } catch (e: Exception) {
-            Timber.e(e, "Error serializing hydration data")
+            Timber.e(e, "Error serializing hydration data: ${e.message}")
         }
     }
 
@@ -63,16 +64,26 @@ class HydrationJSONStore(private val context: Context) : HydrationStore {
         try {
             val jsonString = FileHelper.read(context, HYDRATION_JSON_FILE)
             hydrationList = gson.fromJson(jsonString, listType)
+            Timber.i("Deserialization successful")
         } catch (e: Exception) {
-            Timber.e(e, "Error deserializing hydration data")
+            Timber.e(e, "Error deserializing hydration data: ${e.message}")
         }
     }
+
+//    private fun generateUniqueId(): Long {
+//        var uniqueId = Random().nextLong()
+//        while (hydrationList.any { it.id == uniqueId }) {
+//            uniqueId = Random().nextLong()
+//        }
+//        return uniqueId
+//    }
 
     private fun generateUniqueId(): Long {
         var uniqueId = Random().nextLong()
         while (hydrationList.any { it.id == uniqueId }) {
             uniqueId = Random().nextLong()
         }
+        Timber.i("Generated unique ID: $uniqueId")
         return uniqueId
     }
 
