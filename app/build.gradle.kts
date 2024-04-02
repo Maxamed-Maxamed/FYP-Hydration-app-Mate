@@ -63,8 +63,12 @@ dependencies {
     //firebase
     implementation("com.google.firebase:firebase-analytics:21.5.0")
 
+    //gson for json parsing and serialization of objects to json and vice versa.
     implementation("com.google.code.gson:gson:2.10.1") // for json parsing and serialization of objects to json and vice versa.
 
 
+    //navigation components for navigation between fragments and activities in the app. 
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
 }
