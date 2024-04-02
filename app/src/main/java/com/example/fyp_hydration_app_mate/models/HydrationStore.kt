@@ -14,15 +14,9 @@ interface HydrationStore {
 
     fun delete(hydrationModel: HydrationModel)
 
-//    fun deleteAll(hydrationModel: HydrationModel)
-
-
-//    fun edit(hydrationModel: HydrationModel)
-//
-//    fun update(hydrationModel: HydrationModel)
-//
-//    fun delete(hydrationModel: HydrationModel)
-
+    fun findHydrationById(id: Long): HydrationModel? {
+        return findAll().find { it.id == id }
+    }
 
 
 
