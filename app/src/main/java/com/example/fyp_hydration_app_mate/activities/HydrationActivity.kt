@@ -1,5 +1,6 @@
 package com.example.fyp_hydration_app_mate.activities
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -110,6 +111,28 @@ class HydrationActivity : AppCompatActivity() {
 
        }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        i("onStart")
+        app.hydrationModelMain2.logAll()
+        app.hydrationModelMain2.findAll().forEach { i("Hydration record list: $it") }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        i("onRestart")
+        app.hydrationModelMain2.logAll()
+        app.hydrationModelMain2.findAll().forEach { i("Hydration record list on restart: $it") }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        i("onResume")
+        app.hydrationModelMain2.logAll()
+        app.hydrationModelMain2.findAll().forEach { i("Hydration record list on resume: $it") }
     }
 
 

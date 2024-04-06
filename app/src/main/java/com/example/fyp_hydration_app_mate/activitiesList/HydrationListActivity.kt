@@ -17,6 +17,7 @@ import com.example.fyp_hydration_app_mate.adapters.HydrationAdapter
 import com.example.fyp_hydration_app_mate.adapters.HydrationListener
 import com.example.fyp_hydration_app_mate.models.HydrationModel
 import com.google.android.material.snackbar.Snackbar
+import timber.log.Timber
 
 class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
@@ -146,6 +147,8 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
                 binding.recyclerView.adapter?.notifyItemChanged(it.data!!.getIntExtra("index", 0))
             }
         }
+
+
 
 
 }
