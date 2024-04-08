@@ -10,12 +10,16 @@ import timber.log.Timber
 class MainApp : Application() {
 
 
-    val hydrationModelMain2 = HydrationMemStore()
+ lateinit var    hydrationModelMain2 : HydrationJSONStore // Create the JSONStore
 
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         Timber.i("Main App Created")
+
+
+        hydrationModelMain2 = HydrationJSONStore(applicationContext) // Create the JSONStore
+
 
         // Switch to this for in-memory data management
         hydrationModelMain2.logAll() // Log the list of hydration records

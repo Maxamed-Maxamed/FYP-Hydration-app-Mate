@@ -1,98 +1,102 @@
 package com.example.fyp_hydration_app_mate.models
 
 import android.content.Context
+import android.net.Uri
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.example.fyp_hydration_app_mate.helpers.FileHelper
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import timber.log.Timber
 import java.lang.reflect.Type
 import java.util.*
 
-const val HYDRATION_JSON_FILE = "hydration_data.json"
-private val gson = Gson()
-private val listType: Type = object : TypeToken<ArrayList<HydrationModel>>() {}.type
+const val  HYDRATION_JSON_FILE = "hydrations.json" // Filename for the JSON file to store the hydration records
+val gsonBuilder: Gson = GsonBuilder().setPrettyPrinting()
+    .registerTypeAdapter(Uri::class.java, UriParser()).create()
+
+val listType: Type = object : TypeToken<ArrayList<HydrationModel>>() {}.type
+fun generateUniqueId(): Long {
+    return Random().nextLong()
+}
+
 
 class HydrationJSONStore(private val context: Context) : HydrationStore {
 
-    private var hydrationList: MutableList<HydrationModel> = mutableListOf()
+//    private val gson = Gson()
+//    private val type = TypeToken.getParameterized(List::class.java, HydrationModel::class.java).type
+//    private val filename = HYDRATION_JSON_FILE  // Filename for the JSON file to store the hydration records
+//
 
+
+    val hydrationS = mutableListOf<HydrationModel>()
     init {
         if (FileHelper.exists(context, HYDRATION_JSON_FILE)) {
             deserialize()
         }
     }
 
+
     override fun findAll(): List<HydrationModel> {
-        return hydrationList
+      logAll()
+        return hydrationS
     }
 
     override fun create(hydrationModel: HydrationModel) {
         hydrationModel.id = generateUniqueId()
-        hydrationList.add(hydrationModel)
+        hydrationS.add(hydrationModel)
         serialize()
-        Timber.i("Created new hydration record: $hydrationModel")
-    }
-
-    override fun update(hydrationModel: HydrationModel) {
-        val index = hydrationList.indexOfFirst { it.id == hydrationModel.id }
-        if (index != -1) {
-            hydrationList[index] = hydrationModel
-            serialize()
-            Timber.i("Updated hydration record: $hydrationModel")
-        } else {
-            Timber.i("Hydration record not found for update: $hydrationModel")
-        }
-    }
-
-    override fun delete(hydrationModel: HydrationModel) {
-        hydrationList.removeAll { it.id == hydrationModel.id }
-        serialize()
-        Timber.i("Deleted hydration record: $hydrationModel")
-    }
-
-    private fun serialize() {
-        try {
-            val jsonString = gson.toJson(hydrationList, listType)
-            FileHelper.write(context, HYDRATION_JSON_FILE, jsonString)
-            Timber.i("Serialization successful")
-        } catch (e: Exception) {
-            Timber.e(e, "Error serializing hydration data: ${e.message}")
-        }
-    }
-
-    private fun deserialize() {
-        try {
-            val jsonString = FileHelper.read(context, HYDRATION_JSON_FILE)
-            hydrationList = gson.fromJson(jsonString, listType)
-            Timber.i("Deserialization successful")
-        } catch (e: Exception) {
-            Timber.e(e, "Error deserializing hydration data: ${e.message}")
-        }
-    }
-
-//    private fun generateUniqueId(): Long {
-//        var uniqueId = Random().nextLong()
-//        while (hydrationList.any { it.id == uniqueId }) {
-//            uniqueId = Random().nextLong()
-//        }
-//        return uniqueId
-//    }
-
-    private fun generateUniqueId(): Long {
-        var uniqueId = Random().nextLong()
-        while (hydrationList.any { it.id == uniqueId }) {
-            uniqueId = Random().nextLong()
-        }
-        Timber.i("Generated unique ID: $uniqueId")
-        return uniqueId
     }
 
     override fun logAll() {
-        return HydrationMemStore().logAll() // Log the records from the memory store
+        hydrationS.forEach { Timber.i("Hydration record: $it") }
     }
 
-    override fun findHydrationById(id: Long): HydrationModel? {
-        return hydrationList.find { it.id == id }
-    }
+    override fun update(hydrationModel: HydrationModel) {
+        val index = hydrationS.indexOfFirst { it.id == hydrationModel.id }
+        if (index != -1) {
+            hydrationS[index] = hydrationModel
+            serialize()
+        }
 
     }
+
+    override fun delete(hydrationModel: HydrationModel) {
+        hydrationS.remove(hydrationModel)
+        serialize()
+    }
+
+    private fun serialize() {
+        val jsonString = gsonBuilder.toJson(hydrationS, listType)
+        FileHelper.write(context, HYDRATION_JSON_FILE, jsonString)
+    }
+
+    private fun deserialize() {
+        val jsonString = FileHelper.read(context, HYDRATION_JSON_FILE)
+        hydrationS.clear()
+        hydrationS.addAll(gsonBuilder.fromJson(jsonString, listType))
+    }
+
+}
+
+ class UriParser : JsonDeserializer<Uri>, JsonSerializer<Uri> {
+    override fun deserialize(
+        json: JsonElement?,
+        typeOfT: Type?,
+        context: JsonDeserializationContext?
+    ): Uri {
+        return Uri.parse(json?.asString)
+    }
+    override fun serialize(
+        src: Uri?,
+        typeOfSrc: Type?,
+        context: JsonSerializationContext?
+    ): JsonElement {
+        return JsonPrimitive(src.toString())
+    }
+}
