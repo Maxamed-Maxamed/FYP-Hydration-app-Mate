@@ -76,9 +76,9 @@ class HydrationActivity : AppCompatActivity() {
 
                 app.hydrationModelMain2.logAll()
                 binding.hydrationGoalTextView.setText("")
-                return@setOnClickListener
 
-           Snackbar.make(binding.root, "Hydration Goal Added", Snackbar.LENGTH_LONG)
+
+           Snackbar.make(binding.root, "Hydration Goal Added", Snackbar.LENGTH_LONG).show() // Display a snackbar message
             }
 
         }

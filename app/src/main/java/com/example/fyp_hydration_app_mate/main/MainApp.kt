@@ -10,7 +10,8 @@ import timber.log.Timber
 class MainApp : Application() {
 
 
-lateinit var hydrationModelMain2: HydrationMemStore
+    val hydrationModelMain2 = HydrationMemStore()
+
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
@@ -19,21 +20,5 @@ lateinit var hydrationModelMain2: HydrationMemStore
         // Switch to this for in-memory data management
         hydrationModelMain2.logAll() // Log the list of hydration records
         hydrationModelMain2.findAll().forEach { Timber.i("Hydration record: $it") } // Log the list of hydration records
-
-
-
-
-
     }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        Timber.i("Main App Terminated")
-        hydrationModelMain2.logAll() // Log the list of hydration records
-        hydrationModelMain2.findAll().forEach { Timber.i("Hydration record: $it") } // Log the list of hydration records
-    }
-
-
-
-
 }
