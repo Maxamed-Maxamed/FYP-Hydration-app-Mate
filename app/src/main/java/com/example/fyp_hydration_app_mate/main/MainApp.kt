@@ -10,8 +10,7 @@ import timber.log.Timber
 class MainApp : Application() {
 
 
-    val hydrationModelMain2 = HydrationMemStore()
-
+lateinit var hydrationModelMain2: HydrationMemStore
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
