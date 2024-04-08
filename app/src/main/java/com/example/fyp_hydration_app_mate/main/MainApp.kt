@@ -20,6 +20,21 @@ class MainApp : Application() {
         // Switch to this for in-memory data management
         hydrationModelMain2.logAll() // Log the list of hydration records
         hydrationModelMain2.findAll().forEach { Timber.i("Hydration record: $it") } // Log the list of hydration records
+
+
+
+
+
     }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        Timber.i("Main App Terminated")
+        hydrationModelMain2.logAll() // Log the list of hydration records
+        hydrationModelMain2.findAll().forEach { Timber.i("Hydration record: $it") } // Log the list of hydration records
+    }
+
+
+
 
 }

@@ -135,6 +135,12 @@ class HydrationActivity : AppCompatActivity() {
         app.hydrationModelMain2.findAll().forEach { i("Hydration record list on resume: $it") }
     }
 
+    override fun onPause() {
+        super.onPause()
+        i("onPause")
+        app.hydrationModelMain2.logAll()
+        app.hydrationModelMain2.findAll().forEach { i("Hydration record list on pause: $it") }
+    }
 
 
 
