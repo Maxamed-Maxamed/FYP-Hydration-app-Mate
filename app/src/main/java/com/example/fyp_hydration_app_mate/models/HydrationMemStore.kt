@@ -34,9 +34,12 @@ class HydrationMemStore : HydrationStore {
         val index = hydrationList.indexOfFirst { it.id == hydrationModel.id }
         if (index != -1) {
             hydrationList[index] = hydrationModel.apply {
+                hydrationModel.id = generateUniqueId() // Update the ID
+                hydrationModel.hydrationGoal = hydrationModel.hydrationGoal // Update the hydration goal
+
                 Timber.i("Hydration record updated: $this")
                 id = generateUniqueId()
-                hydrationList.add(hydrationModel)
+               logAll()
 
             }
             Timber.i("Hydration record updated: $hydrationModel")
