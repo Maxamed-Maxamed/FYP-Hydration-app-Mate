@@ -28,11 +28,6 @@ fun generateUniqueId(): Long {
 
 class HydrationJSONStore(private val context: Context) : HydrationStore {
 
-//    private val gson = Gson()
-//    private val type = TypeToken.getParameterized(List::class.java, HydrationModel::class.java).type
-//    private val filename = HYDRATION_JSON_FILE  // Filename for the JSON file to store the hydration records
-//
-
 
     val hydrationS = mutableListOf<HydrationModel>()
     init {
