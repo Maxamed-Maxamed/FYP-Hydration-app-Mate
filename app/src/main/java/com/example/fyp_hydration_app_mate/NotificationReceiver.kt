@@ -20,7 +20,7 @@ class NotificationReceiver : BroadcastReceiver() {
             NotificationCompat.Builder(context, context.getString(R.string.channel_id))
                 .setContentTitle("Hydration Reminder")
                 .setContentText("It's time to drink some water!")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
                 .build()
 
