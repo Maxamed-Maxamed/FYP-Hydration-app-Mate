@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
-import com.example.fyp_hydration_app_mate.NotificationReceiver
+import com.example.fyp_hydration_app_mate.receiver.NotificationReceiver
 import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationBinding
 import com.example.fyp_hydration_app_mate.main.MainApp

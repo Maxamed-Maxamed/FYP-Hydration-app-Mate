@@ -9,13 +9,10 @@ import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
-import com.example.fyp_hydration_app_mate.NotificationReceiver
+import com.example.fyp_hydration_app_mate.receiver.NotificationReceiver
 import com.example.fyp_hydration_app_mate.R
-import com.example.fyp_hydration_app_mate.helpers.FileHelper
 import com.example.fyp_hydration_app_mate.helpers.PreferenceHelper
-import com.example.fyp_hydration_app_mate.models.HYDRATION_JSON_FILE
 import com.example.fyp_hydration_app_mate.models.HydrationJSONStore
-import com.example.fyp_hydration_app_mate.models.HydrationMemStore
 import timber.log.Timber
 
 class MainApp : Application() {
