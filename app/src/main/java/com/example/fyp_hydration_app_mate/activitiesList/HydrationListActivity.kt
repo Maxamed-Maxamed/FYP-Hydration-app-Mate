@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationListBinding
 import com.example.fyp_hydration_app_mate.main.MainApp
@@ -23,6 +25,8 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
     private lateinit var app: MainApp
     private lateinit var binding: ActivityHydrationListBinding
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,22 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
         setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
+        Timber.plant(Timber.DebugTree())
+        Timber.i("Hydration List Activity started...") // Log that the activity has started
+
+
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout)
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+
+        // to make the Navigation drawer icon always appear on the action bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
@@ -90,15 +110,34 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
     }
 
 
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+//            true
+//        } else super.onOptionsItemSelected(item)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.item_add -> {
+//                val launcherIntent = Intent(this, HydrationActivity::class.java)
+//                getResult.launch(launcherIntent)
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_add -> {
+        return when {
+            actionBarDrawerToggle.onOptionsItemSelected(item) -> true
+            item.itemId == R.id.item_add -> {
                 val launcherIntent = Intent(this, HydrationActivity::class.java)
                 getResult.launch(launcherIntent)
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
+
 
 
 

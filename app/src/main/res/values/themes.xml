@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FYPHydrationappMate" parent="Theme.Material3.DayNight.NoActionBar">
+        <style name="Base.Theme.FYPHydrationappMate" parent="Theme.Material3.DayNight.NoActionBar">
             <item name="colorPrimary">@color/md_theme_light_primary</item>
             <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
             <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
