@@ -163,6 +163,41 @@
               <title value="Claude 3 Sonnet" />
             </llm>
           </llm>
+          <messages>
+            <list>
+              <message>
+                <speaker value="HUMAN" />
+                <text value="after this what should i do? " />
+              </message>
+              <message>
+                <speaker value="ASSISTANT" />
+                <text value="I'm afraid I don't have enough context to provide a specific recommendation on what you should do next. As an AI assistant without more details about your situation or goals, I can't give you personalized advice. Could you provide some more information about what you're working on or trying to accomplish? That would help me better understand how I can assist you." />
+              </message>
+            </list>
+          </messages>
+          <updatedAt value="2024-04-18T17:42:53.1899555" />
+        </chat>
+        <chat>
+          <accountId value="VXNlcjoxNjI0MTM=" />
+          <internalId value="08dd3c0c-5e39-4453-97b6-6801657dde5f" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+        </chat>
+        <chat>
+          <accountId value="VXNlcjoxNjI0MTM=" />
+          <internalId value="44a21df8-daea-4105-be1d-1edbf320bb95" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
         </chat>
       </list>
     </chats>

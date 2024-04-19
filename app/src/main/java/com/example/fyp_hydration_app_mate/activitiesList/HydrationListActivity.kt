@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationListBinding
 import com.example.fyp_hydration_app_mate.main.MainApp
@@ -110,21 +111,7 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
     }
 
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-//            true
-//        } else super.onOptionsItemSelected(item)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.item_add -> {
-//                val launcherIntent = Intent(this, HydrationActivity::class.java)
-//                getResult.launch(launcherIntent)
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when {
