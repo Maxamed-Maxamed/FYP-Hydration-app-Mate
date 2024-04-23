@@ -5,7 +5,6 @@
     <string name="set_hydration_goal">Set Hydration Goal</string>
 
 
-
     //Todo Add more strings
     <string name="menu_addHydration">Add</string>
 
@@ -33,10 +32,9 @@
     <string name="enter_Date">enter data</string>
 
 
-        <string name="channel_name">Hydration Reminder</string>
-        <string name="channel_description">Channel for hydration reminder notifications.</string>
-        <string name="channel_id">hydrationReminderChannel</string>
-
+    <string name="channel_name">Hydration Reminder</string>
+    <string name="channel_description">Channel for hydration reminder notifications.</string>
+    <string name="channel_id">hydrationReminderChannel</string>
 
 
     <!-- to toggle the open close button of the navigation drawer -->
@@ -50,10 +48,16 @@
     <string name="action_share">Share</string>
     <string name="action_send">Send</string>
 
-/// Todo Add more strings for the navigation drawer items
-    <string name="nav_header_title">DonationX (Lab)</string>
+    /// Todo Add more strings for the navigation drawer items
+    <string name="nav_header_title">Hydration-Mate</string>
     <string name="nav_header_subtitle">voteforhomer@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
 
+
+
+    <string name="action_about">About Us</string>
+    <string name="aboutus_title">Homer for President !!</string>
+    <string name="aboutus_message">Hi, I\'m Homer\n\nPlease vote for me.\n\n Please Please Please Please!!</string>
+    <string name="aboutus_image_description">Homer for President</string>
 </resources>

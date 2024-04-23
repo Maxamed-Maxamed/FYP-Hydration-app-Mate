@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    background="@color/colorPrimary"
     tools:ignore="HardcodedText">
 
-    <item
-        android:id="@+id/nav_account"
-        android:title="My Account" />
 
     <item
-        android:id="@+id/nav_settings"
-        android:title="Settings" />
+        android:id="@+id/nav_home"
+        android:title="Home" />
 
     <item
-        android:id="@+id/nav_logout"
-        android:title="Logout" />
+        android:id="@+id/nav_about_us"
+        android:title="About Us" />
 
 
     <item android:title="@string/group_communicate">
@@ -27,5 +27,11 @@
                 android:title="@string/action_send" />
         </menu>
     </item>
+
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout" />
+
 
 </menu>

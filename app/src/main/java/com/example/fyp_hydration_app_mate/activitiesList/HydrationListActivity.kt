@@ -15,10 +15,12 @@ import com.example.fyp_hydration_app_mate.main.MainApp
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fyp_hydration_app_mate.R
+import com.example.fyp_hydration_app_mate.activities.AboutUsActivity
 import com.example.fyp_hydration_app_mate.activities.HydrationActivity
 import com.example.fyp_hydration_app_mate.adapters.HydrationAdapter
 import com.example.fyp_hydration_app_mate.adapters.HydrationListener
 import com.example.fyp_hydration_app_mate.models.HydrationModel
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
@@ -28,6 +30,7 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
     private lateinit var binding: ActivityHydrationListBinding
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    lateinit var navigationView: NavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,7 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
         setContentView(binding.root)
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         app = application as MainApp
         Timber.plant(Timber.DebugTree())
@@ -55,6 +59,21 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
         // to make the Navigation drawer icon always appear on the action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+
+                R.id.nav_about_us -> {
+                    val launcherIntent = Intent(this, AboutUsActivity::class.java)
+                    startActivity(launcherIntent)
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
+
+
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
