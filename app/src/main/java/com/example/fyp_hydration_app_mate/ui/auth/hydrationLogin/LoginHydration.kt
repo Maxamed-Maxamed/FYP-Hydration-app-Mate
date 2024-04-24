@@ -29,6 +29,10 @@ class LoginHydration : AppCompatActivity() {
             )
         }
 
+        hydrationLoginBinding.createAccountButton.setOnClickListener {
+            createAccount(hydrationLoginBinding.email.text.toString(), hydrationLoginBinding.password.text.toString())
+        }
+
     }
 
     public override fun onStart() {
@@ -79,6 +83,20 @@ class LoginHydration : AppCompatActivity() {
                 getString(R.string.auth_failed),
                 Toast.LENGTH_LONG).show()
     }
+
+    private fun updateUI() {
+        Toast.makeText(baseContext, "Login Successful", Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun createAccount(email: String, password: String) {
+        Timber.d("createAccount:$email")
+        if (!validateForm()) { return }
+
+        loginRegisterViewModel.register(email,password)
+    }
+
+
 
 }
 

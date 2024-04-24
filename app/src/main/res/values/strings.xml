@@ -68,4 +68,5 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="auth_failed">Authentication failed\n</string>
+    <string name="action_sign_up">Sign Up</string>
 </resources>

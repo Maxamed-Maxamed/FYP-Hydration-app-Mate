@@ -1,17 +1,16 @@
 package com.example.fyp_hydration_app_mate.activitiesList
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationListBinding
-import com.example.fyp_hydration_app_mate.main.MainApp
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fyp_hydration_app_mate.R
@@ -19,7 +18,11 @@ import com.example.fyp_hydration_app_mate.activities.AboutUsActivity
 import com.example.fyp_hydration_app_mate.activities.HydrationActivity
 import com.example.fyp_hydration_app_mate.adapters.HydrationAdapter
 import com.example.fyp_hydration_app_mate.adapters.HydrationListener
+import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationListBinding
+import com.example.fyp_hydration_app_mate.main.MainApp
 import com.example.fyp_hydration_app_mate.models.HydrationModel
+import com.example.fyp_hydration_app_mate.ui.auth.hydrationLogin.LoggedInViewModel
+import com.example.fyp_hydration_app_mate.ui.auth.hydrationLogin.LoginHydration
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
@@ -31,6 +34,8 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var navigationView: NavigationView
+    private lateinit var loggedInViewModel : LoggedInViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +50,13 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
         app = application as MainApp
         Timber.plant(Timber.DebugTree())
         Timber.i("Hydration List Activity started...") // Log that the activity has started
+
+
+
+
+        // start
+
+
 
 
         // drawer layout instance to toggle the menu icon to open
@@ -66,6 +78,16 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
                 R.id.nav_about_us -> {
                     val launcherIntent = Intent(this, AboutUsActivity::class.java)
+                    startActivity(launcherIntent)
+                }
+
+                R.id.nav_logout -> {
+
+                    signOut(menuItem)
+                    //signOut(menuItem)
+                    loggedInViewModel.logOut()
+
+                    val launcherIntent = Intent(this, LoginHydration::class.java)
                     startActivity(launcherIntent)
                 }
             }
@@ -169,21 +191,9 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
         launcherIntent.putExtra("hydrationEditModel", hydrationModel)
         getClickResult.launch(launcherIntent)
 
-
     }
 
-//    private val getClickResult = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            binding.recyclerView.adapter?.notifyDataSetChanged()
-//            Snackbar.make(
-//                binding.root,
-//                "Hydration goal updated",
-//                Snackbar.LENGTH_SHORT
-//            ).show()
-//        }
-//    }
+
 
     // Handle edit result
     private val getClickResult =
@@ -193,8 +203,36 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
             }
         }
 
+    private   fun signOut(item: MenuItem) {
+        loggedInViewModel.logOut()
+        val intent = Intent(this, LoginHydration::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
 
 
+
+    public override fun onStart() {
+        super.onStart()
+        loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)
+        loggedInViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
+            if (firebaseUser != null) {
+                //val currentUser = loggedInViewModel.liveFirebaseUser.value
+//                /*if (currentUser != null)*/ updateNavHeader(loggedInViewModel.liveFirebaseUser.value!!)
+
+
+
+
+            }
+        })
+
+        loggedInViewModel.loggedOut.observe(this, Observer { loggedout ->
+            if (loggedout) {
+                startActivity(Intent(this, LoginHydration::class.java))
+            }
+        })
+
+    }
 
 }
 
