@@ -3,16 +3,16 @@ package com.example.fyp_hydration_app_mate.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.findNavController
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.activitiesList.HydrationListActivity
 import com.example.fyp_hydration_app_mate.databinding.ActivityAboutUsBinding
+import com.example.fyp_hydration_app_mate.ui.auth.hydrationLogin.LoggedInViewModel
+import com.example.fyp_hydration_app_mate.ui.auth.hydrationLogin.LoginHydration
 import com.google.android.material.navigation.NavigationView
 
 class AboutUsActivity : AppCompatActivity() {
@@ -20,6 +20,8 @@ class AboutUsActivity : AppCompatActivity() {
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var navigationView: NavigationView
     lateinit var binding: ActivityAboutUsBinding
+    private lateinit var loggedInViewModel : LoggedInViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,16 @@ class AboutUsActivity : AppCompatActivity() {
                     val launcherIntent = Intent(this, HydrationListActivity::class.java)
                     startActivity(launcherIntent)
                 }
+                R.id.nav_logout -> {
+
+                    signOut(menuItem)
+                    //signOut(menuItem)
+                    loggedInViewModel.logOut()
+
+                    val launcherIntent = Intent(this, LoginHydration::class.java)
+                    startActivity(launcherIntent)
+                }
+
             }
             drawerLayout.closeDrawers()
             true
@@ -78,4 +90,37 @@ class AboutUsActivity : AppCompatActivity() {
         drawerLayout.closeDrawers()
         return true
     }
+
+
+
+    private   fun signOut(item: MenuItem) {
+        loggedInViewModel.logOut()
+        val intent = Intent(this, LoginHydration::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
+
+    public override fun onStart() {
+        super.onStart()
+        loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)
+        loggedInViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
+            if (firebaseUser != null) {
+                //val currentUser = loggedInViewModel.liveFirebaseUser.value
+//                /*if (currentUser != null)*/ updateNavHeader(loggedInViewModel.liveFirebaseUser.value!!)
+
+
+
+
+            }
+        })
+
+        loggedInViewModel.loggedOut.observe(this, Observer { loggedout ->
+            if (loggedout) {
+                startActivity(Intent(this, LoginHydration::class.java))
+            }
+        })
+
+    }
+
 }
