@@ -18,17 +18,36 @@
         android:theme="@style/Theme.FYPHydrationappMate"
         tools:targetApi="33">
         <activity
+            android:name=".ui.auth.hydrationLogin.LoginHydration"
+            android:exported="true"
+            android:label="@string/title_activity_login">
+
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+
+
+</activity>
+
+
+        <activity
             android:name=".activities.AboutUsActivity"
             android:exported="false" />
+
+
         <activity
             android:name=".activitiesList.HydrationListActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
+
+
         <activity
             android:name=".activities.HydrationActivity"
             android:exported="true">

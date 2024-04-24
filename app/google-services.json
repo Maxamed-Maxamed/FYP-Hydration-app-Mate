@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "615257086088",
+    "project_id": "hydration-mate-5802a",
+    "storage_bucket": "hydration-mate-5802a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615257086088:android:615ec8d44c0a0a3f60a73d",
+        "android_client_info": {
+          "package_name": "com.example.fyp_hydration_app_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615257086088-9tr44luoijkdu33bho3uh42h7pan26ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxGuWIW2wKWdxK5vSIIFEmNdIG9VFByBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615257086088-9tr44luoijkdu33bho3uh42h7pan26ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -54,10 +54,18 @@
     <string name="nav_header_desc">Navigation header</string>
 
 
-
-
     <string name="action_about">About Us</string>
     <string name="aboutus_title">Homer for President !!</string>
     <string name="aboutus_message">Hi, I\'m Homer\n\nPlease vote for me.\n\n Please Please Please Please!!</string>
     <string name="aboutus_image_description">Homer for President</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="auth_failed">Authentication failed\n</string>
 </resources>
