@@ -90,6 +90,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
+        android:background="@color/white"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@navigation/navigation_menu" />
