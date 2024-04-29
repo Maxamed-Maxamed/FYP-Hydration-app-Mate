@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fyp_hydration_app_mate.R
 import com.example.fyp_hydration_app_mate.activities.AboutUsActivity
 import com.example.fyp_hydration_app_mate.activities.HydrationActivity
+import com.example.fyp_hydration_app_mate.activities.HydrationDataVisualizationActivity
 import com.example.fyp_hydration_app_mate.adapters.HydrationAdapter
 import com.example.fyp_hydration_app_mate.adapters.HydrationListener
 import com.example.fyp_hydration_app_mate.databinding.ActivityHydrationListBinding
@@ -78,6 +79,10 @@ class HydrationListActivity : AppCompatActivity(), HydrationListener {
 
                 R.id.nav_about_us -> {
                     val launcherIntent = Intent(this, AboutUsActivity::class.java)
+                    startActivity(launcherIntent)
+                }
+                R.id.nav_hydration_data_visualization -> {
+                    val launcherIntent = Intent(this, HydrationDataVisualizationActivity::class.java)
                     startActivity(launcherIntent)
                 }
 

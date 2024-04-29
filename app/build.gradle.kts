@@ -97,5 +97,6 @@ dependencies {
 
     // firebase auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }

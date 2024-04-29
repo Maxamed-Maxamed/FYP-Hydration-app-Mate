@@ -56,6 +56,10 @@ class AboutUsActivity : AppCompatActivity() {
                     val launcherIntent = Intent(this, HydrationListActivity::class.java)
                     startActivity(launcherIntent)
                 }
+                R.id.nav_hydration_data_visualization -> {
+                    val launcherIntent = Intent(this, HydrationDataVisualizationActivity::class.java)
+                    startActivity(launcherIntent)
+                }
                 R.id.nav_logout -> {
 
                     signOut(menuItem)

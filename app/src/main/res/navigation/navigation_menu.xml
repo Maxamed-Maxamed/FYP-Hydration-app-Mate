@@ -14,6 +14,9 @@
     <item
         android:id="@+id/nav_about_us"
         android:title="About Us" />
+    <item
+        android:id="@+id/nav_hydration_data_visualization"
+        android:title="Hydration Data Visualization" />
 
 
     <item android:title="@string/group_communicate">
