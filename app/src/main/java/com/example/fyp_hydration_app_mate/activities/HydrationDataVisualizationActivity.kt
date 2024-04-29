@@ -67,13 +67,24 @@ class HydrationDataVisualizationActivity : AppCompatActivity() {
                     val launcherIntent = Intent(this, HydrationDataVisualizationActivity::class.java)
                     startActivity(launcherIntent)
                 }
+                R.id.nav_share -> { // Assuming 'nav_share' is your share item id
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome app! Link will be available soon...")
+                    startActivity(Intent.createChooser(shareIntent, "Share via"))
+                }
+
+
                 R.id.nav_logout -> {
                     loggedInViewModel.logOut()
                     val launcherIntent = Intent(this, LoginHydration::class.java)
                     startActivity(launcherIntent)
                 }
+
             }
+            drawerLayout.closeDrawers()
             true
+
         }
 
 
