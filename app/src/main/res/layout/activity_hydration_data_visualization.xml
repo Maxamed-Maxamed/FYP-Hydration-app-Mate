@@ -5,8 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_drawer_layout"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+    app:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
 
     tools:context=".activities.HydrationDataVisualizationActivity"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +32,7 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="360dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

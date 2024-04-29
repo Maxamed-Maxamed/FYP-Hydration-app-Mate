@@ -2,6 +2,7 @@ package com.example.fyp_hydration_app_mate.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import android.view.MenuItem
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.google.android.material.navigation.NavigationView
+import kotlin.random.Random
 
 
 class HydrationDataVisualizationActivity : AppCompatActivity() {
@@ -157,6 +159,11 @@ class HydrationDataVisualizationActivity : AppCompatActivity() {
         }
         val barDataSet = BarDataSet(entries, "Hydration Goal")
         val data = BarData(barDataSet)
+
+        val colors = entries.map { Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)) }
+        barDataSet.colors = colors
+
+        // Set up the bar chart properties
         barChart.data = data
         barChart.invalidate()
         barChart.notifyDataSetChanged()
@@ -184,7 +191,14 @@ class HydrationDataVisualizationActivity : AppCompatActivity() {
             BarEntry(index.toFloat(), hydration.hydrationGoal.toFloat())
         }
 
+
+
+
+
         val barDataSet = BarDataSet(entries, "Hydration Goal")
+        val colors = entries.map { Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)) }
+        barDataSet.colors = colors
+
         val data = BarData(barDataSet)
         barChart.data = data
         barChart.invalidate().also {
@@ -196,6 +210,10 @@ class HydrationDataVisualizationActivity : AppCompatActivity() {
             barChart.setPinchZoom(true)
             barChart.setDrawGridBackground(false)
         }
+
+
+
+        //
         barChart.animationMatrix
         barChart.animateY(2000)
         barChart.setTouchEnabled(true)
