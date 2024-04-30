@@ -56,7 +56,9 @@
 
     <string name="action_about">About Us</string>
     <string name="aboutus_title">Homer for President !!</string>
-    <string name="aboutus_message">Hi, I\'m Homer\n\nPlease vote for me.\n\n Please Please Please Please!!</string>
+<!--    <string name="aboutus_message">Hi, I\'m Homer\n\nPlease vote for me.\n\n Please Please Please Please!!</string>-->
+    <string name="aboutus_message">Welcome to Hydration-mate!\n\n We\'re dedicated to helping you stay hydrated and healthy.\n\nTrack your water intake, set hydration goals, and receive personalized reminders to keep you on track.\n\nCheers to a happier, healthier you!</string>
+
     <string name="aboutus_image_description">Homer for President</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
