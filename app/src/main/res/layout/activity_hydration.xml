@@ -10,11 +10,11 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_primary"
         android:fitsSystemWindows="true"
-        app:elevation="0dip"
+        app:elevation="0dp"
         app:theme="@style/Theme.AppCompat.Light.NoActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:timePickerMode="spinner"
-                android:layout_centerInParent="true" />
+                android:layout_gravity="center_horizontal" />
 
             <Button
                 android:id="@+id/hydrationGoalButton"
@@ -75,12 +75,6 @@
                 android:text="@string/set_hydration_goal"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"/>
-
-
-
-
-
-
 
         </LinearLayout>
     </ScrollView>
