@@ -5,68 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hydration App</title>
     <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h1, h2, h3, h4, h5 {
-            color: #007acc; /* Light Blue */
-            margin-top: 0;
+            color: #007bff; /* Blue */
+            margin-top: 20px;
         }
 
         h4 {
-            color: #003333;
+            color: #0056b3; /* Darker Blue */
         }
 
         h5 {
-            color: #002626;
+            color: #004080; /* Dark Blue */
         }
 
         a {
-            color: #007acc;
+            color: #007bff;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #0056b3;
         }
 
         img {
-            width: 100%; /* Adjust the width to fill its container */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Ensure the image is centered within its container */
-            margin: 0 auto; /* Center horizontally */
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #eef2f5;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>FYP</h1>
-        <h2>Hydration App</h2>
-        <h3>By Maxamed Maxamed</h3>
-        <h4>Welcome to our hydration app project!</h4>
-        <p>This project aims to help you keep track of your daily hydration intake, ensuring you stay healthy and hydrated.</p>
-        <p>The app is dedicated to making this app user-friendly and effective for everyone's needs.</p>
-        <h5>This project is still under development. Stay tuned for updates!</h5>
-        <p>Check out the project on GitHub: <a href="https://github.com/Maxamed-Maxamed/FYP-Hydration-app-Mate">FYP-Hydration-app-Mate</a></p>
+        <h1>FYP Hydration App</h1>
+        <h3>Developed by Maxamed Maxamed</h3>
+        <p>Welcome to our hydration app project! Did you know that staying hydrated can improve cognitive function and energy levels?</p>
+        <p>Our app aims to make tracking your daily hydration intake easy and convenient, with features designed for everyone's needs.</p>
+        <h5>This project is still under development. Stay tuned for exciting updates!</h5>
+      
+        <p>Check out the project on GitHub: <a href="https://github.com/Maxamed-Maxamed/FYP-Hydration-app-Mate" class="btn">GitHub Repository</a></p>
         
-        <!-- Include your canvas project -->
-        <!-- If you want to link to an external Canva project, use the anchor tag as follows: -->
-        <p>Explore our Canva project: <a href="https://www.canva.com/design/DAF94vnaTwQ/j0CYcxquRuHc4200T2eZkg/edit?utm_content=DAF94vnaTwQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Canva Project</a></p>
-
-        <img src="Hydration-Mate-1-1.png" alt="Hydration App Image" width="400" height="300">
-        <p>Thank you for using our app!</p>
+        <p>Explore our Canva project: <a href="https://www.canva.com/design/DAF94vnaTwQ/j0CYcxquRuHc4200T2eZkg/edit?utm_content=DAF94vnaTwQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="btn">Canva Project</a></p>
+        <p>Check out my youtube link <a href="https://www.youtube.com/watch?v=v3A0scBEPZs" class="btn">Youtube Link</a></p> 
+        <img src="Hydration-Mate-1-1.png" alt="Hydration App Image">
+        <p>Thank you for your interest in our app! Stay hydrated and healthy!</p>
+        <p>Visit my website: <a href="https://github.com/Maxamed-Maxamed/FYP-Hydration-app-Mate" class="btn">FYP-Hydration-app-Mate</a></p>
+       
     </div>
 </body>
 </html>
